@@ -13,7 +13,7 @@ setup(
     name='Django CMS Parallax',
     packages=find_packages(),
     include_package_data=True,
-    version=0.0.1,
+    version="0.0.1",
     author='Sam Jennings',
     license='MIT',
     description='Django CSM integration for parallax.js',
