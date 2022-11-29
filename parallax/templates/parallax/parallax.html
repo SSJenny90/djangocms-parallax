@@ -1,0 +1,26 @@
+{% load cms_tags static sekizai_tags %}
+
+
+<div class="parallax-window {{instance.extra_css}}" style="min-height:{{instance.min_height}}px;"
+  data-image-src="{{instance.image.url}}"
+  data-natural-width="{{instance.image.width}}"
+  data-natural-height="{{instance.image.height}}"{% if instance.position_x %}
+  data-position-x="{{ instance.position_x }}"{% endif %}{% if instance.position_y %}
+  data-position-y="{{ instance.position_y }}"{% endif %}{% if instance.speed %}
+  data-speed="{{ instance.speed }}"{% endif %}{% if instance.z_index %}
+  data-z-index="{{ instance.z_index }}"{% endif %}{% if instance.bleed %}
+  data-bleed="{{ instance.bleed }}"{% endif %}
+>
+{% for plugin in instance.child_plugin_instances %}
+  {% render_plugin plugin %}
+{% endfor %}
+</div>
+
+{% if instance.include_jquery %}
+{% addtoblock "js" %}<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>{% endaddtoblock %}
+{% endif %}
+
+{% addtoblock "js" %}<script src="{% static 'parallax/parallax.min.js' %}"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script>$('.parallax-window').parallax();</script>{% endaddtoblock %}
+
+
